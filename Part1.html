@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 탑독(TopDog) - 세청마루 발표자료 Part 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* 세종시 공식 색상 */
+        :root {
+            --sejong-skyblue: rgb(0, 160, 198);
+            --sejong-blue: rgb(12, 65, 154);
+            --sejong-gray: rgb(51, 59, 61);
+            --sejong-light-gray: #f8f9fa; /* 밝은 배경색 */
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            background-color: var(--sejong-light-gray);
+            color: var(--sejong-gray);
+        }
+        .slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .slide-content {
+            animation: fadeIn 0.9s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .text-sejong-skyblue { color: var(--sejong-skyblue); }
+        .text-sejong-blue { color: var(--sejong-blue); }
+        .bg-sejong-blue { background-color: var(--sejong-blue); }
+        .bg-sejong-skyblue { background-color: var(--sejong-skyblue); }
+        .border-sejong-blue { border-color: var(--sejong-blue); }
+        .highlight {
+            box-shadow: inset 0 -0.5em 0 rgba(0, 160, 198, 0.2);
+        }
+        /* 전통 문양 패턴 */
+        .pattern-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230c419a' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div id="presentation-container" class="relative w-full h-screen">
+
+        <!-- Slide 1: Title -->
+        <div class="slide active w-full h-full flex-col items-center justify-center p-8 text-center bg-white pattern-bg">
+            <div class="slide-content z-10">
+                <p class="text-2xl md:text-3xl text-sejong-skyblue mb-4 font-medium">공간의 시작점, 세종 청년 마루</p>
+                <h1 class="text-6xl md:text-8xl font-black text-sejong-blue mb-12">세청마루</h1>
+                <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 inline-block shadow-lg">
+                    <h2 class="text-3xl font-bold mb-3 text-sejong-gray">팀 탑독 (TopDog)</h2>
+                    <p class="text-lg text-gray-600">팀장: 오정빈 | 팀원: 김재환, 장서연, 정준용</p>
+                </div>
+                <p class="mt-16 text-gray-500">2025. 08. 09</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Development Background -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-sejong-light-gray">
+            <div class="slide-content w-full max-w-5xl">
+                <h2 class="text-5xl font-bold text-sejong-blue mb-4 text-center">개발 배경</h2>
+                <p class="text-2xl text-gray-500 mb-12 text-center">"정보의 미로 속, 길을 잃은 세종의 청년들"</p>
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 text-sejong-skyblue">젊은 도시의 역설</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            세종시는 전국에서 가장 젊은 도시 중 하나로, <span class="font-bold">청년 인구 비율이 31.5%</span>에 달합니다. 미래를 꿈꾸는 청년들이 모여들지만, 정작 이들은 '정보를 찾기 위한 사투'를 벌이고 있습니다.
+                        </p>
+                        <blockquote class="mt-4 border-l-4 border-sejong-skyblue pl-4 text-gray-500 italic">
+                            "지원금이 있다는데, 어디서 신청해야 하죠?"
+                        </blockquote>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 text-sejong-skyblue">파편화된 정보의 장벽</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            주거, 일자리, 복지 등 필수 정책 정보가 <span class="font-bold">세종시청, 희망내일센터, 복지다옴</span> 등 여러 기관에 흩어져 있습니다. 복잡한 자격 요건까지 더해져, 많은 청년들이 결국 신청을 포기하게 됩니다.
+                        </p>
+                         <blockquote class="mt-4 border-l-4 border-sejong-skyblue pl-4 text-gray-500 italic">
+                            정책이 없는 것이 아니라, 정책이 잘 전달되지 못하는 구조가 문제입니다.
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Development Direction -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-white pattern-bg">
+            <div class="slide-content w-full max-w-5xl text-center">
+                <h2 class="text-5xl font-bold text-sejong-blue mb-4">개발 방향</h2>
+                <p class="text-2xl text-gray-500 mb-12">청년의 눈높이로, 청년의 시간과 에너지를 아껴주는 플랫폼</p>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-center">
+                        <div class="text-5xl mb-4">📥</div>
+                        <h3 class="text-xl font-bold mb-2 text-sejong-blue">통합</h3>
+                        <p class="text-gray-600">파편화된 정책 정보를 하나의 플랫폼으로 모읍니다.</p>
+                    </div>
+                    <div class="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-center">
+                        <div class="text-5xl mb-4">🎯</div>
+                        <h3 class="text-xl font-bold mb-2 text-sejong-blue">맞춤</h3>
+                        <p class="text-gray-600">개인 프로필 기반으로 AI가 맞춤형 정책을 추천합니다.</p>
+                    </div>
+                    <div class="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-center">
+                        <div class="text-5xl mb-4">🔔</div>
+                        <h3 class="text-xl font-bold mb-2 text-sejong-blue">알림</h3>
+                        <p class="text-gray-600">신규/마감 임박 정책을 선제적으로 알려 기회를 놓치지 않게 합니다.</p>
+                    </div>
+                    <div class="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-center">
+                        <div class="text-5xl mb-4">🚀</div>
+                        <h3 class="text-xl font-bold mb-2 text-sejong-blue">확장</h3>
+                        <p class="text-gray-600">궁극적으로 지역 일자리, 주거, 커뮤니티를 아우르는 종합 플랫폼으로 성장합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation (for demonstration) -->
+    <div class="absolute bottom-4 right-4 flex gap-3 z-20">
+        <button id="prev-btn" class="bg-white hover:bg-gray-200 text-sejong-blue font-bold py-2 px-4 rounded-full shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
+            &larr;
+        </button>
+        <button id="next-btn" class="bg-white hover:bg-gray-200 text-sejong-blue font-bold py-2 px-4 rounded-full shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
+            &rarr;
+        </button>
+    </div>
+    
+    <!-- Slide Counter -->
+    <div id="slide-counter" class="absolute bottom-5 left-4 text-gray-500 text-sm font-medium z-20"></div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const slideCounter = document.getElementById('slide-counter');
+        
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            if (n >= slides.length || n < 0) return;
+
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === n);
+            });
+            
+            currentSlide = n;
+            slideCounter.textContent = `${n + 1} / ${slides.length}`;
+            prevBtn.disabled = n === 0;
+            nextBtn.disabled = n === slides.length - 1;
+        }
+
+        nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+        prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+                e.preventDefault();
+                showSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                showSlide(currentSlide - 1);
+            }
+        });
+
+        // Initial setup
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

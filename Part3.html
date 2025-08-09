@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 탑독(TopDog) - 세청마루 발표자료 Part 3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* 세종시 공식 색상 */
+        :root {
+            --sejong-skyblue: rgb(0, 160, 198);
+            --sejong-blue: rgb(12, 65, 154);
+            --sejong-gray: rgb(51, 59, 61);
+            --sejong-light-gray: #f8f9fa; /* 밝은 배경색 */
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            background-color: var(--sejong-light-gray);
+            color: var(--sejong-gray);
+        }
+        .slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .slide-content {
+            animation: fadeIn 0.9s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .text-sejong-skyblue { color: var(--sejong-skyblue); }
+        .text-sejong-blue { color: var(--sejong-blue); }
+        .bg-sejong-blue { background-color: var(--sejong-blue); }
+        .bg-sejong-skyblue { background-color: var(--sejong-skyblue); }
+        .border-sejong-blue { border-color: var(--sejong-blue); }
+        .highlight {
+            box-shadow: inset 0 -0.5em 0 rgba(0, 160, 198, 0.2);
+        }
+        /* 전통 문양 패턴 */
+        .pattern-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230c419a' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div id="presentation-container" class="relative w-full h-screen">
+
+        <!-- Slide 9: Expected Impact Overview -->
+        <div class="slide active w-full h-full flex-col items-center justify-center p-8 bg-sejong-light-gray">
+            <div class="slide-content w-full max-w-6xl text-center">
+                <h2 class="text-5xl font-bold text-sejong-blue mb-4">기대 효과</h2>
+                <p class="text-2xl text-gray-500 mb-12">세청마루는 청년, 정부, 지역사회 모두를 위한 가치를 창출합니다.</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- For Youth -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-sejong-skyblue">
+                        <div class="text-5xl mb-4">👤</div>
+                        <h3 class="text-2xl font-bold mb-3 text-sejong-skyblue">청년 (사용자)</h3>
+                        <ul class="text-left list-disc list-inside space-y-2 text-gray-600">
+                            <li>정보 탐색 시간 및 스트레스 <span class="font-bold">획기적 감소</span></li>
+                            <li>'몰라서 놓치는' 정책 방지로 <span class="font-bold">수혜율 극대화</span></li>
+                            <li>실질적 경제 혜택을 통한 <span class="font-bold">안정적 지역 정착</span> 지원</li>
+                        </ul>
+                    </div>
+                    <!-- For Government -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-sejong-blue">
+                        <div class="text-5xl mb-4">🏢</div>
+                        <h3 class="text-2xl font-bold mb-3 text-sejong-blue">정부 (세종시)</h3>
+                         <ul class="text-left list-disc list-inside space-y-2 text-gray-600">
+                            <li>정책 참여율 증대로 <span class="font-bold">예산 효율성 개선</span></li>
+                            <li>데이터 기반의 <span class="font-bold">과학적 정책 수립</span> 기틀 마련</li>
+                            <li>시민 맞춤형 서비스로 <span class="font-bold">시정 신뢰도 및 만족도</span> 제고</li>
+                        </ul>
+                    </div>
+                    <!-- For Community -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-gray-500">
+                        <div class="text-5xl mb-4">📈</div>
+                        <h3 class="text-2xl font-bold mb-3 text-gray-600">지역사회 (기업)</h3>
+                         <ul class="text-left list-disc list-inside space-y-2 text-gray-600">
+                            <li>청년 수요 데이터 기반 <span class="font-bold">새로운 사업 기회</span> 발굴</li>
+                            <li>지역 기업의 <span class="font-bold">효율적인 타겟 마케팅</span> 지원</li>
+                            <li>청년 정착 인구 증가로 <span class="font-bold">지역 경제 활성화</span>에 기여</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Virtuous Cycle Ecosystem -->
+        <div class="slide w-full h-full flex-col items-center justify-center p-8 bg-white pattern-bg">
+            <div class="slide-content w-full max-w-5xl text-center">
+                <h2 class="text-5xl font-bold text-sejong-blue mb-12">선순환 생태계 구축</h2>
+                <div class="relative flex items-center justify-center">
+                    <!-- Central Core -->
+                    <div class="absolute w-48 h-48 bg-sejong-blue text-white rounded-full flex flex-col items-center justify-center shadow-2xl z-10">
+                        <h3 class="text-2xl font-bold">세청마루</h3>
+                        <p class="text-sm">플랫폼</p>
+                    </div>
+
+                    <!-- Cycle Items -->
+                    <div class="w-full h-full">
+                        <svg viewBox="0 0 400 400" class="w-full h-full max-w-2xl mx-auto">
+                            <circle cx="200" cy="200" r="180" fill="none" stroke="rgba(12, 65, 154, 0.1)" stroke-width="20" />
+                            <defs>
+                                <path id="circlePath" d="M 50, 200 a 150,150 0 1,1 300,0 a 150,150 0 1,1 -300,0" />
+                            </defs>
+                        </svg>
+
+                        <!-- Item 1: User -->
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 -mt-8 text-center w-48">
+                            <div class="text-4xl mb-2">👤</div>
+                            <h4 class="font-bold">청년</h4>
+                            <p class="text-sm text-gray-500">편리한 정책 접근<br/>수혜율 & 만족도 UP</p>
+                        </div>
+                        
+                        <!-- Item 2: Data -->
+                        <div class="absolute top-1/2 right-0 -translate-y-1/2 mt-4 mr-0 md:-mr-12 text-center w-48">
+                             <div class="text-4xl mb-2">📊</div>
+                            <h4 class="font-bold">데이터</h4>
+                            <p class="text-sm text-gray-500">가치있는 데이터 축적<br/>(익명화된 통계)</p>
+                        </div>
+
+                        <!-- Item 3: Gov/Biz -->
+                        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 mb-0 md:-mb-8 text-center w-48">
+                             <div class="text-4xl mb-2">🏢</div>
+                            <h4 class="font-bold">정부/기업</h4>
+                            <p class="text-sm text-gray-500">과학적 정책 설계<br/>효율적 마케팅</p>
+                        </div>
+                        
+                        <!-- Item 4: Reinvestment -->
+                        <div class="absolute top-1/2 left-0 -translate-y-1/2 ml-0 md:-ml-12 text-center w-48">
+                             <div class="text-4xl mb-2">⚙️</div>
+                            <h4 class="font-bold">플랫폼</h4>
+                            <p class="text-sm text-gray-500">수익을 통한<br/>서비스 고도화</p>
+                        </div>
+                    </div>
+                </div>
+                 <p class="mt-16 text-xl text-sejong-blue font-semibold">청년, 정부, 지역사회가 함께 성장하는 지속 가능한 모델</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation (for demonstration) -->
+    <div class="absolute bottom-4 right-4 flex gap-3 z-20">
+        <button id="prev-btn" class="bg-white hover:bg-gray-200 text-sejong-blue font-bold py-2 px-4 rounded-full shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
+            &larr;
+        </button>
+        <button id="next-btn" class="bg-white hover:bg-gray-200 text-sejong-blue font-bold py-2 px-4 rounded-full shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
+            &rarr;
+        </button>
+    </div>
+    
+    <!-- Slide Counter -->
+    <div id="slide-counter" class="absolute bottom-5 left-4 text-gray-500 text-sm font-medium z-20"></div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const slideCounter = document.getElementById('slide-counter');
+        
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            if (n >= slides.length || n < 0) return;
+
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === n);
+            });
+            
+            currentSlide = n;
+            slideCounter.textContent = `${n + 1} / ${slides.length}`;
+            prevBtn.disabled = n === 0;
+            nextBtn.disabled = n === slides.length - 1;
+        }
+
+        nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+        prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+                e.preventDefault();
+                showSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                showSlide(currentSlide - 1);
+            }
+        });
+
+        // Initial setup
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
