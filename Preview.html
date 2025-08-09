@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 탑독(TopDog) - 세청마루 시연 화면</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* 세종시 공식 색상 */
+        :root {
+            --sejong-skyblue: rgb(0, 160, 198);
+            --sejong-blue: rgb(12, 65, 154);
+            --sejong-gray: rgb(51, 59, 61);
+            --sejong-light-gray: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--sejong-light-gray);
+            color: var(--sejong-gray);
+        }
+        .mobile-mockup {
+            width: 375px;
+            height: 812px;
+            border: 12px solid var(--sejong-gray);
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            background-color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-auto-rows: 60px; /* 각 셀의 높이 지정 */
+            position: relative;
+        }
+        .calendar-day {
+            padding-top: 0.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .event-bar {
+            position: absolute;
+            left: 4px;
+            right: 4px;
+            height: 22px;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+            border-radius: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            z-index: 0;
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="w-full h-screen flex flex-col items-center justify-center p-8">
+
+    <div class="w-full text-center mb-8">
+        <h2 class="text-4xl font-bold text-sejong-blue">시연 화면: 핵심 기능</h2>
+        <p class="text-xl text-gray-500 mt-2">세청마루의 실제 작동 모습을 소개합니다.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-12">
+        <!-- Demo 1: Calendar View -->
+        <div class="mobile-mockup">
+            <div class="flex-shrink-0 p-4">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <div class="flex flex-col items-center -mt-1">
+                            <img src="secheongmaru_v03_symbol.svg" alt="세청마루 심볼" class="w-7 h-7">
+                            <span class="text-[10px] text-gray-400 leading-none mt-1">세청마루</span>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">안녕하세요</p>
+                            <h3 class="text-xl font-bold text-sejong-blue">김재환님!</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-bell text-xl text-gray-400"></i>
+                        <img src="sample.jpg" class="rounded-full object-cover w-10 h-10" alt="프로필 사진">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex-grow p-4 flex flex-col min-h-0">
+                <div class="flex-shrink-0">
+                    <div class="flex justify-between items-center mb-4">
+                        <button class="text-gray-500"><i class="fas fa-chevron-left"></i></button>
+                        <h4 class="text-lg font-bold">2025년 8월</h4>
+                        <button class="text-gray-500"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="grid grid-cols-7 text-center text-sm text-gray-400 mb-2">
+                        <div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div>
+                    </div>
+                </div>
+                <div class="flex-grow overflow-y-auto">
+                    <div class="calendar-grid">
+                        <!-- Events -->
+                        <div class="event-bar" style="grid-column: 3 / span 7; grid-row: 2 / span 1; top: 28px; background-color: var(--sejong-skyblue);">구직활동비 지원</div>
+                        <div class="event-bar" style="grid-column: 1 / span 5; grid-row: 4 / span 1; top: 28px; background-color: var(--sejong-blue);">청년월세 특별지원</div>
+
+                        <!-- Calendar Days -->
+                        <div class="calendar-day text-gray-300">27</div>
+                        <div class="calendar-day text-gray-300">28</div>
+                        <div class="calendar-day text-gray-300">29</div>
+                        <div class="calendar-day text-gray-300">30</div>
+                        <div class="calendar-day text-gray-300">31</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div><div class="calendar-day text-gray-300">1</div><div class="calendar-day text-gray-300">2</div><div class="calendar-day text-gray-300">3</div><div class="calendar-day text-gray-300">4</div><div class="calendar-day text-gray-300">5</div><div class="calendar-day text-gray-300">6</div>
+                    </div>
+                    <div class="mt-4 border-t pt-4">
+                        <h4 class="font-bold mb-3">이번 달 주요 정책</h4>
+                        <div class="space-y-3">
+                            <div class="bg-sky-50 p-3 rounded-lg">
+                                <p class="font-semibold text-sm"><span class="inline-block w-2 h-2 rounded-full mr-2" style="background-color: var(--sejong-skyblue);"></span>구직활동비 지원</p>
+                                <p class="text-xs text-gray-500 ml-4">신청 기간: 8월 6일 ~ 8월 31일</p>
+                            </div>
+                            <div class="bg-blue-50 p-3 rounded-lg">
+                                <p class="font-semibold text-sm"><span class="inline-block w-2 h-2 rounded-full mr-2" style="background-color: var(--sejong-blue);"></span>청년월세 특별지원</p>
+                                <p class="text-xs text-gray-500 ml-4">신청 기간: 8월 17일 ~ 8월 21일</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-shrink-0 grid grid-cols-4 text-center py-3 border-t text-gray-400">
+                <div><i class="fas fa-home text-xl text-sejong-blue"></i><p class="text-xs mt-1 text-sejong-blue">홈</p></div>
+                <div><i class="fas fa-search text-xl"></i><p class="text-xs mt-1">검색</p></div>
+                <div><i class="fas fa-comments text-xl"></i><p class="text-xs mt-1">챗봇</p></div>
+                <div><i class="fas fa-user text-xl"></i><p class="text-xs mt-1">마이</p></div>
+            </div>
+        </div>
+
+        <!-- Demo 2: Profile Edit View -->
+        <div class="mobile-mockup">
+            <div class="flex-shrink-0 p-4 border-b">
+                <div class="flex items-center">
+                    <button class="text-sejong-blue"><i class="fas fa-arrow-left text-lg"></i></button>
+                    <h3 class="text-xl font-bold text-center flex-grow">내 정보 수정</h3>
+                    <div class="w-6"></div> <!-- for spacing -->
+                </div>
+            </div>
+            
+            <div class="flex-grow p-6 overflow-y-auto min-h-0">
+                <div class="text-center mb-6">
+                    <div class="relative inline-block">
+                        <img src="sample.jpg" class="rounded-full object-cover w-24 h-24" alt="프로필 사진">
+                        <button class="absolute bottom-0 right-0 w-8 h-8 bg-sejong-skyblue text-white rounded-full flex items-center justify-center border-2 border-white">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="space-y-5">
+                    <div>
+                        <label class="font-semibold text-sm text-gray-600">이름</label>
+                        <input type="text" value="김재환" class="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sejong-skyblue">
+                    </div>
+                    <div>
+                        <label class="font-semibold text-sm text-gray-600">나이</label>
+                        <input type="number" value="28" class="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sejong-skyblue">
+                    </div>
+                    <div>
+                        <label class="font-semibold text-sm text-gray-600">성별</label>
+                        <div class="grid grid-cols-2 gap-3 mt-1">
+                            <button class="w-full p-3 border-sejong-blue bg-sejong-blue/10 text-sejong-blue rounded-lg">남성</button>
+                            <button class="w-full p-3 border border-gray-300 rounded-lg">여성</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="font-semibold text-sm text-gray-600">소득 구간 (가구 단위, 세전)</label>
+                        <select class="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sejong-skyblue bg-white">
+                            <option>선택하세요</option>
+                            <option>중위소득 60% 이하</option>
+                            <option selected>중위소득 60% 초과 ~ 150% 이하</option>
+                            <option>중위소득 150% 초과</option>
+                        </select>
+                         <p class="text-xs text-gray-400 mt-1">* 1인 가구 기준 중위소득 150%는 월 3,342,668원입니다.</p>
+                    </div>
+                    <div>
+                        <label class="font-semibold text-sm text-gray-600">직업 상태</label>
+                        <select class="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sejong-skyblue bg-white">
+                            <option>미취업 (구직자)</option>
+                            <option selected>재직 (주 30시간 미만)</option>
+                            <option>재직 (주 30시간 이상)</option>
+                            <option>학생</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Nav (same as left) -->
+            <div class="flex-shrink-0 grid grid-cols-4 text-center py-3 border-t text-gray-400">
+                <div><i class="fas fa-home text-xl"></i><p class="text-xs mt-1">홈</p></div>
+                <div><i class="fas fa-search text-xl"></i><p class="text-xs mt-1">검색</p></div>
+                <div><i class="fas fa-comments text-xl"></i><p class="text-xs mt-1">챗봇</p></div>
+                <div><i class="fas fa-user text-xl text-sejong-blue"></i><p class="text-xs mt-1 text-sejong-blue">마이</p></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

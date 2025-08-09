@@ -150,10 +150,33 @@
         const slideCounter = document.getElementById('slide-counter');
         const prevFile = 'Part3.html';
         const nextFile = null;
-        const baseOffset = 10; // Part4는 11~13 슬라이드
-        const globalTotal = 13;
-        
+        const baseOffset = 11; // Part4는 12~14 슬라이드
+        const globalTotal = 14;
+
         let currentSlide = 0;
+
+        function getGlobalPageFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const page = Number(params.get('page'));
+            return Number.isFinite(page) ? page : null;
+        }
+
+        function getCurrentGlobalPage() {
+            return baseOffset + currentSlide + 1;
+        }
+
+        function updateUrlWithPage(globalPage) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('page', String(globalPage));
+            window.history.replaceState({}, '', url);
+        }
+
+        function navigateToFileWithPage(file, globalPage) {
+            if (!file) return;
+            const url = new URL(file, window.location.href);
+            url.searchParams.set('page', String(globalPage));
+            window.location.href = url.toString();
+        }
 
         function showSlide(n) {
             if (n >= slides.length || n < 0) return;
@@ -161,22 +184,31 @@
             slides.forEach((slide, index) => {
                 slide.classList.toggle('active', index === n);
             });
-            
+
             currentSlide = n;
-            slideCounter.textContent = `${baseOffset + n + 1} / ${globalTotal}`;
+            const globalPage = baseOffset + n + 1;
+            slideCounter.textContent = `${globalPage} / ${globalTotal}`;
             prevBtn.disabled = n === 0 && !prevFile;
             nextBtn.disabled = n === slides.length - 1 && !nextFile;
+            updateUrlWithPage(globalPage);
         }
 
         nextBtn.addEventListener('click', () => {
             if (currentSlide === slides.length - 1) {
-                if (nextFile) { window.location.href = nextFile; return; }
+                if (nextFile) {
+                    navigateToFileWithPage(nextFile, getCurrentGlobalPage() + 1);
+                    return;
+                }
             }
             showSlide(currentSlide + 1);
         });
+
         prevBtn.addEventListener('click', () => {
             if (currentSlide === 0) {
-                if (prevFile) { window.location.href = prevFile; return; }
+                if (prevFile) {
+                    navigateToFileWithPage(prevFile, getCurrentGlobalPage() - 1);
+                    return;
+                }
             }
             showSlide(currentSlide - 1);
         });
@@ -184,17 +216,32 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
                 e.preventDefault();
-                if (currentSlide === slides.length - 1 && nextFile) { window.location.href = nextFile; return; }
+                if (currentSlide === slides.length - 1 && nextFile) {
+                    navigateToFileWithPage(nextFile, getCurrentGlobalPage() + 1);
+                    return;
+                }
                 showSlide(currentSlide + 1);
             } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
                 e.preventDefault();
-                if (currentSlide === 0 && prevFile) { window.location.href = prevFile; return; }
+                if (currentSlide === 0 && prevFile) {
+                    navigateToFileWithPage(prevFile, getCurrentGlobalPage() - 1);
+                    return;
+                }
                 showSlide(currentSlide - 1);
             }
         });
 
-        // Initial setup
-        showSlide(currentSlide);
+        // Initial setup from URL (?page=)
+        (function init() {
+            const page = getGlobalPageFromUrl();
+            if (page !== null) {
+                const localIndex = page - 1 - baseOffset;
+                if (localIndex >= 0 && localIndex < slides.length) {
+                    currentSlide = localIndex;
+                }
+            }
+            showSlide(currentSlide);
+        })();
     </script>
 </body>
 </html>
